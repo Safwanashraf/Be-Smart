@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="/users-styles/signup.css">
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+</head>
+
+<body>
+
+
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="/signUp" method="post" id="userSignup">
+			<h1>Create Account</h1>
+			{{!-- <span>or use your email for registration</span> --}}
+			<input type="text" name="name" placeholder="Name" />
+			<input type="email" name="email" placeholder="Email" />
+			<input type="number" name="phone" placeholder="Number" />
+			<input type="password" name="password" placeholder="Password" />
+      <input type="password" name="confirmPassword" placeholder="ConfirmPassword" />
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="/login" method="post" id="userLogin">
+			<h1 style="margin-bottom: 15px;">Sign in</h1>
+			<span style="margin-bottom: 15px; ">Welcome back!<br> Don't have a Smart Watch!</span>
+			<input type="email" name="email" placeholder="Email" />
+			<input type="password" name="password" placeholder="Password" />
+			<a href="#">Forgot your password?</a>
+			<button>Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay" >
+			<div class="overlay-panel overlay-left" style="color: white;">
+				<h1 class="mt-5 ">Welcome Back!</h1>
+				<p >To keep connected with us please login with your personal details</p>
+				<button class="ghost" id="signIn" style="color: white;">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right" style="color: white;">
+				<h1>Hi There!</h1>
+				<p>Enter your personal details to open an account with us</p>
+				<button class="ghost" id="signUp" style="color: white; type='submit' ">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="/users-styles/script.js" charset="utf-8"></script>
+</body>
+
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
+
+<style>
+  .error { color: red }
+</style>
+<script>
+
+  $("#userSignup").validate( { 
+rules: { 
+  name: { 
+        required: true, minlength: 3 
+},
+  email: {
+     required: true, email: true, minlength: 5 
+},
+  phone: {
+         required: true,
+  minlength: 10 
+},
+  password: {
+     required: true, minlength: 6, maxlength: 10 
+},
+  confirmPassword: {
+     required: true, 
+    equalTo: "#password" 
+} },
+      messages: {
+  password: {
+     required: "Password is required", minlength: "Password should ontain atleast 5 characters" 
+},
+      confirmPassword: { equalTo: "Enter the same password " }, } })
+
+</script>
+    <script>
+      $(document).ready(function () {
+         $("#userLogin").validate({
+          rules: {
+      email: { 
+        required: true, minlength: 6 
+        }, password: {
+           required: true,
+      minlength: 3 
+        } 
+      } 
+    }) 
+  })
+    </script>

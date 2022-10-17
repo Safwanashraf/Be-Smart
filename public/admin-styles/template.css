@@ -1,0 +1,14 @@
+
+input[type="search"] {
+    color: white;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    color: white;
+}
+
+.table-dark {
+    color: #c4bbbb;
+    --bs-table-striped-color: #c4bbbb;
+}
+

@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Shoping Cart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="images/icons/favicon.png" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="css/util.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  {{!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
+
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/png">
+  <link rel="stylesheet" href="/assets/css/vendor/vendor.min.css">
+  <link rel="stylesheet" href="/assets/css/plugins/plugins.min.css">
+  <link rel="stylesheet" href="/assets/css/style.min.css">
+
+  {{!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
+
+  <!--===============================================================================================-->
+</head>
+
+<body class="animsition">
+
+  <!-- Header -->
+  <header class="header-v4">
+    <!-- Header desktop -->
+    <div class="container-menu-desktop">
+      <!-- Topbar -->
+      <div class="top-bar">
+        <div class="content-topbar flex-sb-m h-full container">
+          <div class="left-top-bar">
+            Free shipping all over India
+          </div>
+
+          <div class="right-top-bar flex-w h-full">
+            <a href="/logout" class="flex-c-m trans-04 p-lr-25">
+              Logout
+            </a>
+
+            <a href="/user-profile" class="flex-c-m trans-04 p-lr-25">
+              My Account
+            </a>
+
+            <a href="#" class="flex-c-m trans-04 p-lr-25">
+              EN
+            </a>
+
+            <a href="#" class="flex-c-m trans-04 p-lr-25">
+              USD
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap-menu-desktop how-shadow1">
+        <nav class="limiter-menu-desktop container">
+
+          <!-- Logo desktop -->
+          <a href="/" class="logo" style="color: #6c7ae0;">
+            <h1 class="fw-bold" style="font-size: xx-large; color: #333;">BE SMART</h1>
+          </a>
+
+          <!-- Menu desktop -->
+          <div class="menu-desktop">
+            <ul class="main-menu">
+              <li>
+                <a href="/">Home</a>
+              </li>
+
+              <li>
+                <a href="/shop">Shop</a>
+              </li>
+
+              <li class="label1" data-label1="hot">
+                <a href="#">Best sellers</a>
+              </li>
+
+              {{!-- <li>
+                <a href="blog.html">Blog</a>
+              </li> --}}
+
+              <li>
+                <a href="#">About</a>
+              </li>
+
+              <li>
+                <a href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Icon header -->
+          <div class="wrap-icon-header flex-w flex-r-m">
+            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+              <i class="zmdi zmdi-search"></i>
+            </div>
+
+            <a href="/veiw-cart" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti "
+              data-notify="{{cartCount}}">
+              <i class="zmdi zmdi-shopping-cart"></i>
+            </a>
+
+            <a href="/veiw-wishlist" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+              data-notify="{{wishlistCount}}">
+              <i class="zmdi zmdi-favorite-outline"></i>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Header Mobile -->
+    <div class="wrap-header-mobile">
+      <!-- Logo moblie -->
+      <div class="logo-mobile">
+        <a href="/" class="logo">
+          <h1 class="fw-bold" style="font-size: xx-large; color: #333;">BE SMART</h1>
+        </a>
+      </div>
+
+      <!-- Icon header -->
+      <div class="wrap-icon-header flex-w flex-r-m">
+        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+          <i class="zmdi zmdi-search"></i>
+        </div>
+
+        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti " data-notify="{{cartCount}}">
+          <i class="zmdi zmdi-shopping-cart"></i>
+        </div>
+
+        <a href="/veiw-wishlist" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+          data-notify="{{wishlistCount}}">
+          <i class="zmdi zmdi-favorite-outline"></i>
+        </a>
+      </div>
+
+      <!-- Button show menu -->
+      <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </div>
+    </div>
+
+
+    <!-- Menu Mobile -->
+    <div class="menu-mobile">
+      <ul class="topbar-mobile">
+        <li>
+          <div class="left-top-bar">
+            Free shipping all over India
+          </div>
+        </li>
+
+        <li>
+          <div class="right-top-bar flex-w h-full">
+            <a href="/logout" class="flex-c-m p-lr-10 trans-04">
+              Logout
+            </a>
+
+            <a href="/user-profile" class="flex-c-m p-lr-10 trans-04">
+              My Account
+            </a>
+
+            <a href="#" class="flex-c-m p-lr-10 trans-04">
+              EN
+            </a>
+
+            <a href="#" class="flex-c-m p-lr-10 trans-04">
+              USD
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="main-menu-m">
+        <li>
+          <a href="/">Home</a>
+          <span class="arrow-main-menu-m">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </span>
+        </li>
+
+        <li>
+          <a href="/shop">Shop</a>
+        </li>
+
+        <li>
+          <a href="#" class="label1 rs1" data-label1="hot">Best sellers</a>
+        </li>
+
+        <li>
+          <a href="#">About</a>
+        </li>
+
+        <li>
+          <a href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Modal Search -->
+    <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+      <div class="container-search-header">
+        <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+          <img src="images/icons/icon-close2.png" alt="CLOSE">
+        </button>
+
+        <form class="wrap-search-header flex-w p-l-15">
+          <button class="flex-c-m trans-04">
+            <i class="zmdi zmdi-search"></i>
+          </button>
+          <input class="plh3" type="text" name="search" placeholder="Search...">
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cart -->
+  <div class="wrap-header-cart js-panel-cart">
+    <div class="s-full js-hide-cart"></div>
+
+    <div class="header-cart flex-col-l p-l-65 p-r-25">
+      <div class="header-cart-title flex-w flex-sb-m p-b-8">
+        <span class="mtext-103 cl2">
+          Your Cart
+        </span>
+
+        <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+          <i class="zmdi zmdi-close"></i>
+        </div>
+      </div>
+
+      <div class="header-cart-content flex-w js-pscroll">
+        <ul class="header-cart-wrapitem w-full">
+          <li class="header-cart-item flex-w flex-t m-b-12">
+            <div class="header-cart-item-img">
+              <img src="images/item-cart-01.jpg" alt="IMG">
+            </div>
+
+            <div class="header-cart-item-txt p-t-8">
+              <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                White Shirt Pleat
+              </a>
+
+              <span class="header-cart-item-info">
+                1 x $19.00
+              </span>
+            </div>
+          </li>
+
+          <li class="header-cart-item flex-w flex-t m-b-12">
+            <div class="header-cart-item-img">
+              <img src="images/item-cart-02.jpg" alt="IMG">
+            </div>
+
+            <div class="header-cart-item-txt p-t-8">
+              <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                Converse All Star
+              </a>
+
+              <span class="header-cart-item-info">
+                1 x $39.00
+              </span>
+            </div>
+          </li>
+
+          <li class="header-cart-item flex-w flex-t m-b-12">
+            <div class="header-cart-item-img">
+              <img src="images/item-cart-03.jpg" alt="IMG">
+            </div>
+
+            <div class="header-cart-item-txt p-t-8">
+              <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                Nixon Porter Leather
+              </a>
+
+              <span class="header-cart-item-info">
+                1 x $17.00
+              </span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="w-full">
+          <div class="header-cart-total w-full p-tb-40">
+            Total: $75.00
+          </div>
+
+          <div class="header-cart-buttons flex-w w-full">
+            <a href="shoping-cart.html"
+              class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+              View Cart
+            </a>
+
+            <a href="shoping-cart.html"
+              class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+              Check Out
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ...:::: Start Breadcrumb Section:::... -->
+  <div class="breadcrumb-section breadcrumb-bg-color--golden">
+    <div class="breadcrumb-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="breadcrumb-title">Chekout</h3>
+            <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+              <nav aria-label="breadcrumb">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/shop">Shop</a></li>
+                  <li class="active" aria-current="page">Cart</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- ...:::: End Breadcrumb Section:::... -->
+
+
+
+  <!-- ...:::: Start Checkout Section:::... -->
+  <div class="checkout-section">
+    <div class="container">
+      <!-- Start User Details Checkout Form -->
+      <div class="checkout_form" data-aos="fade-up" data-aos-delay="400">
+        <div class="row">
+          <div class="col-lg-6 col-md-6">
+            <form id="formconfirmed">
+
+              <h3>Billing Details</h3>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="default-form-box">
+                    <label>First Name <span>*</span></label>
+                    <input type="text" required id="firstName" value="{{address.[0].firstName}}" name="firstName" />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="default-form-box">
+                    <label>Last Name <span>*</span></label>
+                    <input type="text" required id="lastName" value="{{address.[0].lastName}}" name="lastName" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="default-form-box">
+                    <label>Phone number<span>*</span></label>
+                    <input type="text" required id="phoneNumber" value="{{address.[0].phoneNumber}}" name="phoneNumber" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="default-form-box">
+                    <label>Alterante phone number</label>
+                    <input type="text" id="alternatePhoneNumber" value="{{address.[0].alternatePhoneNumber}}"
+                      name="alternatePhoneNumber" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="default-form-box">
+                    <label>Type <span>*</span></label>
+                    <select class="country_option nice-select wide" required name="type" id="type">
+                      <option value="{{address.[0].type}}" selected>{{address.[0].type}}</option>
+                      <option value="home">Home</option>
+                      <option value="office">Office</option>
+
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="default-form-box">
+                    <label>Street address <span>*</span></label>
+                    <input id="addresses" name="addresses" value="{{address.[0].address}}"
+                      placeholder="House number and street name" required type="text" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="default-form-box">
+                    <label>Town / City <span>*</span></label>
+                    <input id="city" required type="text" value="{{address.[0].city}}" name="city" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="default-form-box">
+                    <label>State <span>*</span></label>
+                    <input id="state" required value="{{address.[0].state}}" type="text" name="state" />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="default-form-box">
+                    <label>Land Mark<span>*</span></label>
+                    <input id="landMark" required value="{{address.[0].landMark}}" type="text" name="landMark" />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="default-form-box">
+                    <label> Pincode <span>*</span></label>
+                    <input name="pincode" required id="pincode" type="text" value="{{address.[0].pincode}}" />
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div id="newAccountPassword" class="collapse mt-3" data-parent="#newAccountPassword">
+                    <div class="card-body1 default-form-box">
+                      <label> Account password <span>*</span></label>
+                      <input placeholder="password" type="password" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label class="checkbox-default" for="newShipping" data-bs-toggle="collapse"
+                    data-bs-target="#anotherShipping">
+                    <input type="checkbox" id="newShipping" />
+                    <span>Ship to a different address?</span>
+                  </label>
+
+                  <div id="anotherShipping" class="collapse mt-3" data-parent="#anotherShipping">
+
+                    <div class="row">
+
+                      {{#each address}}
+
+                      <div class="col-lg-6">
+                        <div class="card bg-light mb-3 ml-1 " style="max-width: 18rem; ">
+                          <div class="card-header">Address</div>
+                          <div class="card-body p-5">
+                            <h5 class="card-title">{{this.firstName}} {{this.lastName}}</h5>
+                            <h6 class="card-text">
+                              {{this.address}},<br>{{this.city}},<br>{{this.state}},<br>{{this.pincode}},<br>{{this.landMark}},<br>{{this.phoneNumber}},<br>{{this.alternatePhoneNumber}}.
+                              </p>
+                              <a onclick="address('{{this._id}}');"><button type="button" class="btn btn-primary"
+                                  style="background-color: #b19361; border-color:#fff">select</button></a>
+                          </div>
+                        </div>
+                      </div>
+
+                      {{/each}}
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+
+          <!-- Start Coupon Start -->
+          {{!-- <div class="coupon_area">
+            <div class="container">
+              <div class="row"> --}}
+                <div class="col-lg-6 col-md-6">
+                  <div class="coupon_code left" data-aos="fade-up" data-aos-delay="200"
+                    style="padding: 0; margin: 0; margin-bottom: 40px;">
+                    <h3>Coupon</h3>
+                    <div class="coupon_inner">
+                      <p>Enter your coupon code if you have one.</p>
+                      <input id="couponId" class="mb-2" placeholder="Coupon code" type="text">
+
+
+                      <p id="couponPresent" style="visibility: hidden;" class="mt-3 mb-3" style="color: green;">&#10003;
+                        Coupon applied</p>
+                      <div class="row pb-5 mb-3 " style="border-bottom: 1px solid #ddd;">
+                        <div class="col-lg-6 d-flex justify-content-start">
+                          <a data-bs-toggle="modal" data-bs-target="#exampleModal"><button type="button"
+                              style="background-color: #B19361; border: #B19361; color: white; "
+                              class="btn btn-primary ">
+                              Coupon Center
+                            </button>
+                          </a>
+
+                        </div>
+
+
+
+                        {{!-- ------------------------------------coupons modal
+                        -----------------------------------------------------------------------------------------------
+                        --}}
+                        <div class="modal fade  modal-dialog-scrollable" id="exampleModal" tabindex="-1"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 style="font-weight:bold;"> Coupons you have</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                {{#each couponData}}
+                                <div class="card text-center m-5" style="background-color: #24262b; color: white;">
+                                  <div class="card-header">
+                                    {{couponName}}
+                                  </div>
+                                  <div class="card-body p-5" style="background-color: white;">
+                                    <h5 class="card-title">Redeem coupons right now</h5>
+                                    <p class="card-text">You have coupon worth {{discountAmount}},redeem it right know
+                                      your purchase of {{minAmount}}</p>
+                                    <a href="" class="btn btn-primary "
+                                      style="background-color: #24262b; border: #24262b; color: white; margin-left: 300px; margin-right: 300px; text-align: center;"
+                                      onclick="copyFunction('{{couponCode}}')">Copy Code</a>
+                                  </div>
+
+                                </div>
+                                {{/each}}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                  style="background-color: #24262b; border: #24262b; color: white;">Close</button>
+                                {{!-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6 " style="padding-left: 125px;">
+
+                          <a onclick="couponValidator('{{totalAmount}}')">
+                            <button type="button" class="btn btn-md btn-golden">Apply coupon</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  {{!--                     
+                  </div> --}}
+
+                  {{!--
+                </div>
+              </div>
+            </div> --}}
+            <!-- End Coupon Start -->
+
+            {{!--
+            ----------------------------------------------------------------------------------------------------------------
+            --}}
+            {{!-- <div class="col-lg-6 col-md-6"> --}}
+
+              <h3>Your order</h3>
+              <div class="order_table table-responsive">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each cartData.products}}
+                    <tr>
+                      <td> {{this.productId.name}} <strong> × {{this.quantity}}</strong></td>
+                      <td> &#8377;{{subTotal this.productId.current_price this.quantity}}</td>
+                      {{/each}}
+                      {{!--
+                    </tr>
+                    <tr>
+                      <td> Handbag justo <strong> × 2</strong></td>
+                      <td> $50.00</td>
+                    </tr>
+                    <tr>
+                      <td> Handbag elit <strong> × 2</strong></td>
+                      <td> $50.00</td>
+                    </tr>
+                    <tr>
+                      <td> Handbag Rutrum <strong> × 1</strong></td>
+                      <td> $50.00</td>
+                    </tr> --}}
+                  </tbody>
+                  <tfoot>
+                    {{!-- <tr>
+                      <th>Cart Subtotal</th>
+                      <td>$215.00</td>
+                    </tr>
+                    <tr>
+                      <th>Shipping</th>
+                      <td><strong>$5.00</strong></td>
+                    </tr> --}}
+                    <tr class="order_total">
+                      <th>Order Total</th>
+                      <td id="totalAmount"><strong>&#8377;{{totalAmount}}</strong></td>
+                    </tr>
+                    <tr id="couponPresentss" style="visibility: hidden;">
+                      <th>Coupon Discount </th>
+                      <td id="discountAmount"><strong>&#8377;{{discountAmount}}</strong></td>
+                    </tr>
+                    <tr id="couponPresents" style="visibility: hidden;">
+                      <th>Total</th>
+                      <td id="newTotalAmount"><strong>&#8377;{{newTotalAmount}}</strong></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <div class="payment_method pb-5 px-5">
+                <div class="panel-default">
+                  <label class="checkbox-default" for="currencyCod">
+                    <input type="checkbox" data-bs-toggle="collapse" data-bs-target="#methodCod" id="codDisable"
+                      name="paymentMethod" />
+                    <span>Cash on Delivery</span>
+                  </label>
+
+                  <div id="methodCod" class="collapse" data-parent="#methodCod">
+                    <div class="card-body1">
+                      <p>You will have to only pay after the arrival of the product</p>
+                      <button class="btn btn-md btn-black-default-hover" type="submit">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-default">
+                  <label class="checkbox-default" for="currencyPaypal">
+                    <input type="checkbox" data-bs-toggle="collapse" data-bs-target="#methodPaypal" id="currencyPaypal"
+                      name="payementmethods" value="online" />
+                    <span>Online Payment</span>
+                  </label>
+                  <div id="methodPaypal" class="collapse" data-parent="#methodPaypal">
+                    <div class="card-body1">
+                      <p>Pay via PayPal; you can pay with your credit card if
+                        you don’t have a PayPal account.</p>
+                      <button id="rzp-button1" class="btn btn-md btn-black-default-hover" type="submit">Proceed to
+                        Payment</button>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+              {{!--
+            </div> --}}
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Start User Details Checkout Form -->
+    </div>
+  </div><!-- ...:::: End Checkout Section:::... -->
+
+
+
+
+
+  <!-- Button trigger modal -->
+
+
+  <!-- Modal -->
+
+
+
+  <!-- Start Modal Add cart -->
+  <div class="modal fade" id="modalAddcart" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col text-right">
+                <button type="button" class="close modal-close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true"> <i class="fa fa-times"></i></span>
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="modal-add-cart-product-img">
+                      <img class="img-fluid" src="assets/images/product/default/home-1/default-1.jpg" alt="" />
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="modal-add-cart-info"><i class="fa fa-check-square"></i>Added to cart successfully!</div>
+                    <div class="modal-add-cart-product-cart-buttons">
+                      <a href="cart.html">View Cart</a>
+                      <a href="checkout.html">Checkout</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 modal-border">
+                <ul class="modal-add-cart-product-shipping-info">
+                  <li>
+                    <strong><i class="icon-shopping-cart"></i>
+                      There Are 5 Items In Your Cart.</strong>
+                  </li>
+                  <li>
+                    <strong>TOTAL PRICE: </strong>
+                    <span>$187.00</span>
+                  </li>
+                  <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE SHOPPING</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal Add cart -->
+
+  <!-- Start Modal Quickview cart -->
+  <div class="modal fade" id="modalQuickview" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col text-right">
+                <button type="button" class="close modal-close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true"> <i class="fa fa-times"></i></span>
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="product-details-gallery-area mb-7">
+                  <!-- Start Large Image -->
+                  <div class="product-large-image modal-product-image-large swiper-container">
+                    <div class="swiper-wrapper">
+                      <div class="product-image-large-image swiper-slide img-responsive">
+                        <img src="assets/images/product/default/home-1/default-1.jpg" alt="" />
+                      </div>
+                      <div class="product-image-large-image swiper-slide img-responsive">
+                        <img src="assets/images/product/default/home-1/default-2.jpg" alt="" />
+                      </div>
+                      <div class="product-image-large-image swiper-slide img-responsive">
+                        <img src="assets/images/product/default/home-1/default-3.jpg" alt="" />
+                      </div>
+                      <div class="product-image-large-image swiper-slide img-responsive">
+                        <img src="assets/images/product/default/home-1/default-4.jpg" alt="" />
+                      </div>
+                      <div class="product-image-large-image swiper-slide img-responsive">
+                        <img src="assets/images/product/default/home-1/default-5.jpg" alt="" />
+                      </div>
+                      <div class="product-image-large-image swiper-slide img-responsive">
+                        <img src="assets/images/product/default/home-1/default-6.jpg" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Large Image -->
+                  <!-- Start Thumbnail Image -->
+                  <div class="product-image-thumb modal-product-image-thumb swiper-container pos-relative mt-5">
+                    <div class="swiper-wrapper">
+                      <div class="product-image-thumb-single swiper-slide">
+                        <img class="img-fluid" src="assets/images/product/default/home-1/default-1.jpg" alt="" />
+                      </div>
+                      <div class="product-image-thumb-single swiper-slide">
+                        <img class="img-fluid" src="assets/images/product/default/home-1/default-2.jpg" alt="" />
+                      </div>
+                      <div class="product-image-thumb-single swiper-slide">
+                        <img class="img-fluid" src="assets/images/product/default/home-1/default-3.jpg" alt="" />
+                      </div>
+                      <div class="product-image-thumb-single swiper-slide">
+                        <img class="img-fluid" src="assets/images/product/default/home-1/default-4.jpg" alt="" />
+                      </div>
+                      <div class="product-image-thumb-single swiper-slide">
+                        <img class="img-fluid" src="assets/images/product/default/home-1/default-5.jpg" alt="" />
+                      </div>
+                      <div class="product-image-thumb-single swiper-slide">
+                        <img class="img-fluid" src="assets/images/product/default/home-1/default-6.jpg" alt="" />
+                      </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="gallery-thumb-arrow swiper-button-next"></div>
+                    <div class="gallery-thumb-arrow swiper-button-prev"></div>
+                  </div>
+                  <!-- End Thumbnail Image -->
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="modal-product-details-content-area">
+                  <!-- Start  Product Details Text Area-->
+                  <div class="product-details-text">
+                    <h4 class="title">Nonstick Dishwasher PFOA</h4>
+                    <div class="price"><del>$70.00</del>$80.00</div>
+                  </div>
+                  <!-- End  Product Details Text Area-->
+                  <!-- Start Product Variable Area -->
+                  <div class="product-details-variable">
+                    <!-- Product Variable Single Item -->
+                    <div class="variable-single-item">
+                      <span>Color</span>
+                      <div class="product-variable-color">
+                        <label for="modal-product-color-red">
+                          <input name="modal-product-color" id="modal-product-color-red" class="color-select"
+                            type="radio" checked />
+                          <span class="product-color-red"></span>
+                        </label>
+                        <label for="modal-product-color-tomato">
+                          <input name="modal-product-color" id="modal-product-color-tomato" class="color-select"
+                            type="radio" />
+                          <span class="product-color-tomato"></span>
+                        </label>
+                        <label for="modal-product-color-green">
+                          <input name="modal-product-color" id="modal-product-color-green" class="color-select"
+                            type="radio" />
+                          <span class="product-color-green"></span>
+                        </label>
+                        <label for="modal-product-color-light-green">
+                          <input name="modal-product-color" id="modal-product-color-light-green" class="color-select"
+                            type="radio" />
+                          <span class="product-color-light-green"></span>
+                        </label>
+                        <label for="modal-product-color-blue">
+                          <input name="modal-product-color" id="modal-product-color-blue" class="color-select"
+                            type="radio" />
+                          <span class="product-color-blue"></span>
+                        </label>
+                        <label for="modal-product-color-light-blue">
+                          <input name="modal-product-color" id="modal-product-color-light-blue" class="color-select"
+                            type="radio" />
+                          <span class="product-color-light-blue"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <!-- Product Variable Single Item -->
+                    <div class="d-flex align-items-center flex-wrap">
+                      <div class="variable-single-item">
+                        <span>Quantity</span>
+                        <div class="product-variable-quantity">
+                          <input min="1" max="100" value="1" type="number" />
+                        </div>
+                      </div>
+
+                      <div class="product-add-to-cart-btn">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add To Cart</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Product Variable Area -->
+                  <div class="modal-product-about-text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing
+                      elit. Mollitia iste laborum ad impedit pariatur esse
+                      optio tempora sint ullam autem deleniti nam in quos qui
+                      nemo ipsum numquam, reiciendis maiores quidem aperiam,
+                      rerum vel recusandae</p>
+                  </div>
+                  <!-- Start  Product Details Social Area-->
+                  <div class="modal-product-details-social">
+                    <span class="title">SHARE THIS PRODUCT</span>
+                    <ul>
+                      <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a></li>
+                      <li><a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                      </li>
+                      <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+
+                  </div>
+                  <!-- End  Product Details Social Area-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal Quickview cart -->
+
+
+
+
+  <!-- Start Footer Section -->
+  <footer class="footer-section footer-bg section-top-gap-100">
+    <div class="footer-wrapper">
+      <!-- Start Footer Top -->
+      <div class="footer-top">
+        <div class="container">
+          <div class="row mb-n6">
+            <div class="col-lg-3 col-sm-6 mb-6">
+              <!-- Start Footer Single Item -->
+              <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up" data-aos-delay="0">
+                <h5 class="title">INFORMATION</h5>
+                <ul class="footer-nav">
+                  <li><a href="#">Delivery Information</a></li>
+                  <li><a href="#">Terms & Conditions</a></li>
+                  <li><a href="#">Contact</a></li>
+                  <li><a href="#">Returns</a></li>
+                </ul>
+              </div>
+              <!-- End Footer Single Item -->
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-6">
+              <!-- Start Footer Single Item -->
+              <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                data-aos-delay="200">
+                <h5 class="title">MY ACCOUNT</h5>
+                <ul class="footer-nav">
+                  <li><a href="/user-profile">My account</a></li>
+                  <li><a href="/veiw-wishlist">Wishlist</a></li>
+                  {{!-- <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                  <li><a href="faq.html">Frequently Questions</a></li> --}}
+                  <li><a href="#">Order History</a></li>
+                </ul>
+              </div>
+              <!-- End Footer Single Item -->
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-6">
+              <!-- Start Footer Single Item -->
+              <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                data-aos-delay="400">
+                <h5 class="title">CATEGORIES</h5>
+                <ul class="footer-nav">
+                  <li><a href="#">Men</a></li>
+                  <li><a href="#">Women</a></li>
+                  <li><a href="#">Accessories</a></li>
+                </ul>
+              </div>
+              <!-- End Footer Single Item -->
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-6">
+              <!-- Start Footer Single Item -->
+              <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                data-aos-delay="600">
+                <h5 class="title">ABOUT US</h5>
+                <div class="footer-about">
+                  <p>We are selling high quality smart watches for customers by considering for every aspects</p>
+
+                  <address class="address">
+                    <span>Email: besmart@gmail.com</span>
+                  </address>
+                </div>
+              </div>
+              <!-- End Footer Single Item -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Footer Top -->
+      <!-- Start Footer Center -->
+      <div class="footer-center">
+        <div class="container">
+          <div class="row mb-n6">
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-6">
+              <div class="footer-social" data-aos="fade-up" data-aos-delay="0">
+                <h4 class="title">FOLLOW US</h4>
+                <ul class="footer-social-link">
+                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-7 col-lg-6 col-md-6 mb-6">
+              <div class="footer-newsletter" data-aos="fade-up" data-aos-delay="200">
+                <h4 class="title">DON'T MISS OUT ON THE LATEST</h4>
+                <div class="form-newsletter">
+                  <form action="#" method="post">
+                    <div class="form-fild-newsletter-single-item input-color--golden">
+                      <input type="email" placeholder="Your email address..." required>
+                      <button type="submit">SUBSCRIBE!</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Start Footer Center -->
+
+
+    </div>
+  </footer>
+  <!-- End Footer Section -->
+
+
+
+  <!-- Back to top -->
+  <button class="material-scrolltop" type="button"></button>
+  {{!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
+
+  <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+  <script src="/assets/js/vendor/vendor.min.js"></script>
+  <script src="/assets/js/plugins/plugins.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <!-- Main JS -->
+  <script src="/assets/js/main.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/bootstrap/js/popper.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/select2/select2.min.js"></script>
+  {{!-- <script>
+    $(".js-select2").each(function () {
+      $(this).select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $(this).next('.dropDownSelect2')
+      });
+    })
+  </script> --}}
+  <!--===============================================================================================-->
+  <script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+
+
+  {{!-- <script>
+    $('.js-pscroll').each(function () {
+      $(this).css('position', 'relative');
+      $(this).css('overflow', 'hidden');
+      var ps = new PerfectScrollbar(this, {
+        wheelSpeed: 1,
+        scrollingThreshold: 1000,
+        wheelPropagation: false,
+      });
+
+      $(window).on('resize', function () {
+        ps.update();
+      })
+    });
+  </script>
+  <!--===============================================================================================--> --}}
+  <script src="/js/main.js"></script>
+  
+  <!--===============================================================================================-->
+  
+  <script>
+    function address(addId) {
+
+      $.ajax({
+        url: '/address_fetching',
+        data: {
+
+          address: addId,
+
+
+        },
+        method: 'post',
+        success: (res) => {
+
+
+          document.getElementById("addresses").value = res.address[0].address;
+          document.getElementById("firstName").value = res.address[0].firstName;
+          if (res.address[0].pincode)
+            document.getElementById("pincode").value = res.address[0].pincode;
+          if (res.address[0].phoneNumber) {
+
+            document.getElementById("phoneNumber").value = res.address[0].phoneNumber;
+          }
+          else {
+
+            document.getElementById("phoneNumber").value = " ";
+          }
+          document.getElementById("lastName").value = res.address[0].lastName;
+
+          if (res.address[0].alternatePhoneNumber) {
+            console.log('truee')
+            document.getElementById("alternatePhoneNumber").value = res.address[0].alternatePhoneNumber;
+          }
+          else {
+            console.log("false")
+            document.getElementById("alternatePhoneNumber").value = " ";
+          }
+          document.getElementById("city").value = res.address[0].city;
+          document.getElementById("type").value = res.address[0].type;
+          if (res.address[0].landMark) {
+            document.getElementById("landMark").value = res.address[0].landMark;
+          }
+          else {
+            document.getElementById("landMark").value = " ";
+          }
+          document.getElementById("state").value = res.address[0].state;
+
+
+
+        },
+
+        error: (error) => {
+          alert('hierror')
+          console.log(error)
+        },
+      })
+    }
+
+  $("#formconfirmed").submit((e) => {
+   
+    e.preventDefault();
+     console.log('gigjgj')
+    var value = $('#codDisable').is(':checked');
+    console.log(value);
+    if (value) {
+      $.ajax({
+        url: '/order_confirmed',
+        data: $('#form').serialize(),
+        method: 'post',
+        success: (res) => {
+          
+          location.replace('/renderConfirmation')
+        }
+
+      })
+    }
+    else {
+
+     
+      $.ajax({
+        url: '/intiate_razorpay',
+        data: $('#form').serialize(),
+        method: 'post',
+        success: (res) => {
+
+          //---------------------------------------------------------------------------------
+
+          amount = res.razorData.amount * 100;
+          console.log(amount);
+          var options = {
+            "key": "rzp_test_1rvf7wP1DFIRwM", // Enter the Key ID generated from the Dashboard
+            "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "BeSmart",
+            "description": "India's best Smart watches selling website",
+            "image": "https://example.com/your_logo",
+            "order_id": res.razorData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+
+              verifyPayment(response, res.razorData);
+            },
+            "prefill": {
+              "name": "Gaurav Kumar",
+              "email": "gaurav.kumar@example.com",
+              "contact": "9999999999"
+            },
+            "notes": {
+              "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+              "color": "#3399cc"
+            }
+          };
+          var rzp1 = new Razorpay(options);
+          rzp1.open();
+          e.preventDefault();
+          rzp1.on('payment.failed', function (response) {
+      
+
+          });
+
+        }
+      })
+    }
+  })
+      function verifyPayment(razorResponse, razorData) {
+
+    $.ajax({
+      url: '/verifyRazorpay',
+      data: {
+        razorResponse,
+        razorData
+      },
+      method: 'post',
+      success: (res) => {
+        if (res.status) {
+          location.replace('/renderConfirmation');
+        }
+      }
+    })
+  }
+    function couponValidator(total) {
+    totalAmount = document.getElementById('totalAmount').text
+    couponId = document.getElementById('couponId').value
+
+    $.ajax({
+      url: '/couponValidation',
+      data: {
+        couponId: couponId,
+        total: total
+
+
+      },
+
+      method: 'post',
+      success: (response) => {
+        console.log(response);
+        if (response.message == "success") {
+
+          document.getElementById("couponPresent").style.visibility = 'visible'
+          document.getElementById("couponPresents").style.visibility = 'visible'
+          document.getElementById("couponPresentss").style.visibility = 'visible'
+          document.getElementById('couponPresent').style.color = 'green';
+          $("#discountAmount").text(response.coupons.discountAmount)
+          $("#newTotalAmount").text(response.newTotal)
+        }
+        else if (response.message == 'couponExpired') {
+          document.getElementById('couponPresent').style.visibility = 'visible';
+          document.getElementById('couponPresent').style.color = 'red';
+          document.getElementById('couponPresent').innerHTML = '&#10060; Coupon has expired';
+        }
+        else if (response.message == 'couponUsed') {
+          document.getElementById('couponPresent').style.visibility = 'visible';
+          document.getElementById('couponPresent').style.color = 'red';
+          document.getElementById('couponPresent').innerHTML = '&#10060; Coupon already used ';
+        }
+        else if (response.message == 'couponMin') {
+          document.getElementById('couponPresent').style.visibility = 'visible';
+          document.getElementById('couponPresent').style.color = 'red';
+          document.getElementById('couponPresent').innerHTML = '&#10060; Please add amount to your cart ';
+        }
+        else if (response.message == 'couponInvalid') {
+          document.getElementById('couponPresent').style.visibility = 'visible';
+          document.getElementById('couponPresent').style.color = 'red';
+          document.getElementById('couponPresent').innerHTML = '&#10060; Coupon code is invalid';
+        }
+
+      }
+    });
+  }
+
+     function copyFunction(couponId) {
+    event.preventDefault()
+    console.log(couponId);
+
+    navigator.clipboard.writeText(couponId);
+  }
+  function disable() {
+    document.getElementById('currencyPaypal').disabled = true;;
+  }
+  function disableCod() {
+    document.getElementById('codDisable').disabled = true;
+  } 
+  </script>
+
+  <!--===============================================================================================-->
+
+</body>
+
+
+</html>

@@ -1,0 +1,44 @@
+<head>
+  <link rel="stylesheet" href="/admin-styles/login.css" />
+  <style>
+    .error{ margin-bottom: 10px; color: red; }
+  </style>
+</head>
+
+<div class="class login-box">
+  <h2 class="Login"></h2>
+  <form method="post" action="/admin" id="adminlogin">
+    <div class="user-box1">
+      <input type="email" name="email" required="" placeholder="Email" />
+      {{!-- <label>Email</label> --}}
+    </div>
+
+    <div class="user-box2">
+      <input type="password" name="password" required="" placeholder="Password" />
+      {{!-- <label>Password</label> --}}
+    </div>
+    <button type="submit" style="background-color:black ;" class="btn__submit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </button>
+  </form>
+
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"
+></script>
+
+<script>
+  $(document).ready(function () { $("#adminlogin").validate({ rules: { email: {
+  required: true, email: true, minlength: 6 }, password: { required: true,
+  minlength: 5 } } }) })
+</script>
