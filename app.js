@@ -11,8 +11,9 @@ const cors = require('cors')
 
 const adminRouter = require('./routes/admin');
 const usersRouter = require('./routes/users');
-mongoose.connect('mongodb://localhost:27017/PieceOfArt')
-
+mongoose.connect('mongodb+srv://safwanAshraf:basith123@cluster0.fnqmdew.mongodb.net/BeSmart?retryWrites=true&w=majority').then(()=>{
+  console.log("datbase Connected")
+})
 const app = express();
 const count = 182 * 24 * 60 * 60 * 1000;
 
