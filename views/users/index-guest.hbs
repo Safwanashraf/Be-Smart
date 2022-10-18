@@ -352,7 +352,17 @@
 						All Products
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+
+            {{#each categoryData}}
+            <button
+              class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
+              data-filter=".{{this.name}}"
+            >
+              {{this.name}}
+            </button>
+            {{/each}}
+
+					{{!-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
 						Women
 					</button>
 
@@ -362,7 +372,7 @@
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
 						Accessories
-					</button>
+					</button> --}}
 
 				</div>
 
@@ -583,7 +593,7 @@
 
 			<div class="row isotope-grid">
 				{{#each products}}
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{this.category.name}}">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
@@ -777,6 +787,9 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+
+
+
 	<script>
 		$('.gallery-lb').each(function() { // the containers for all your galleries
 			$(this).magnificPopup({
@@ -788,6 +801,7 @@
 		        mainClass: 'mfp-fade'
 		    });
 		});
+
 	</script>
 <!--===============================================================================================-->
 	<script src="vendor/isotope/isotope.pkgd.min.js"></script>

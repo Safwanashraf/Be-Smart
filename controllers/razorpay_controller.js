@@ -10,32 +10,38 @@ var instance = new Razorpay({
 
 module.exports = {
   intiateRazorpay: async(orderId, amount) => { 
-    
-    console.log('this is working');
-   value= await instance.orders.create({
-    amount: amount,
-    currency: "INR",
-    receipt: orderId+" ",
-    notes: {
-      key1: "value3",
-      key2: "value2"
+    try {
+      
+      console.log('this is working');
+     value= await instance.orders.create({
+      amount: amount,
+      currency: "INR",
+      receipt: orderId+" ",
+      notes: {
+        key1: "value3",
+        key2: "value2"
+      }
+     })
+      return value;
+    } catch (error) {
+      console.log(error)
     }
-   })
-    return value;
+    
    
   },
   validate: async (razorData) => {
- 
-    
-    
-   
-    let hmac = crypto.createHmac('sha256',"eCM7m8F9YBXon4K3bqFJZgqb" );
-   await  hmac.update(razorData['razorResponse[razorpay_order_id]'] + '|' + razorData['razorResponse[razorpay_payment_id]']);
-    hmac =await hmac.digest('hex');
-    if (hmac == razorData['razorResponse[razorpay_signature]'])
-      return orderConfirmed = true;
-    console.log('its not working');
-    return orderConfirmed = false;
+    try {
+      
+      let hmac = crypto.createHmac('sha256',"eCM7m8F9YBXon4K3bqFJZgqb" );
+     await  hmac.update(razorData['razorResponse[razorpay_order_id]'] + '|' + razorData['razorResponse[razorpay_payment_id]']);
+      hmac =await hmac.digest('hex');
+      if (hmac == razorData['razorResponse[razorpay_signature]'])
+        return orderConfirmed = true;
+      console.log('its not working');
+      return orderConfirmed = false;
+    } catch (error) {
+      console.log(error)
+    }
   }
   
 }

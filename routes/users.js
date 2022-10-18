@@ -19,7 +19,7 @@ router.get("/", userController.getHome);
 router.get("/login", userController.getLogin);
 router.post("/login", userController.doLogin);
 router.post("/signUp", userController.doSignup);
-router.get("/otp", userController.getOtp);
+// router.get("/otp", userController.getOtp);
 router.get("/logout", userController.getLogout);
 
 //////////////////////////////////

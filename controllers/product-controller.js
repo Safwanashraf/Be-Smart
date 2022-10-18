@@ -2,51 +2,76 @@ const productModel = require('../models/product')
 
 module.exports={
     addproduct: (productData) => {
-        return new Promise(async (resolve, reject) => {
-                productModel.create(productData).then((data) => {
-                    // console.log(data);
-                    resolve(data)
-                    
-                })
-        })
+        try {
+            
+            return new Promise(async (resolve, reject) => {
+                    productModel.create(productData).then((data) => {
+                        // console.log(data);
+                        resolve(data)
+                        
+                    })
+            })
+        } catch (error) {
+            console.log(error)
+        }
     },
     getAllProduct: () => {
-        return new Promise(async (resolve, reject) => {
-            const products=await productModel.find().populate('category').lean()
-            // let products =  productModel.find().toArray()
-            resolve(products)
+        try {
             
-        })
+            return new Promise(async (resolve, reject) => {
+                const products=await productModel.find().populate('category').lean()
+                // let products =  productModel.find().toArray()
+                resolve(products)
+                
+            })
+        } catch (error) {
+            console.log(error)
+        }
     },
     deleteProduct: (productId) => {
-        return new Promise((resolve, reject) => {
-            productModel.findByIdAndDelete(productId).then((response) => {
-                resolve(response)
+        try {
+            
+            return new Promise((resolve, reject) => {
+                productModel.findByIdAndDelete(productId).then((response) => {
+                    resolve(response)
+                })
             })
-        })
+        } catch (error) {
+            console.log(error)
+        }
     }, 
     getProductDetails: (productId) => {
-        return new Promise((resolve, reject) => {
-            productModel.findOne({ _id: (productId) }).lean().then((product) => {
-                resolve(product)
+        try {
+            
+            return new Promise((resolve, reject) => {
+                productModel.findOne({ _id: (productId) }).lean().then((product) => {
+                    resolve(product)
+                })
+    
             })
-
-        })
+        } catch (error) {
+            console.log(error)
+        }
     },
     editProduct: (productId, productDetails) => {
-        return new Promise((resolve, reject) => {
-                productModel.findByIdAndUpdate({_id: productId}, {
-                    $set: {
-                        name: productDetails.name,
-                        category: productDetails.category,
-                        price: productDetails.price,
-                        description: productDetails.description,
-                        image: productDetails.image
-                    }
-                }).then((response) => {
-                    
-                    resolve()
-                })
-        })
+        try {
+            
+            return new Promise((resolve, reject) => {
+                    productModel.findByIdAndUpdate({_id: productId}, {
+                        $set: {
+                            name: productDetails.name,
+                            category: productDetails.category,
+                            price: productDetails.price,
+                            description: productDetails.description,
+                            image: productDetails.image
+                        }
+                    }).then((response) => {
+                        
+                        resolve()
+                    })
+            })
+        } catch (error) {
+            console.log(error)
+        }
     },
 }

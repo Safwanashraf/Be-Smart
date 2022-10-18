@@ -6,7 +6,7 @@ const router = express.Router();
 const adminController = require("../controllers/admin-controller");
 const multer = require("multer");
 const userController = require("../controllers/user-controller");
-const { verifyLogin } = require("../controllers/user-controller");
+const verifyLogin = adminController.verifyLogin;
 
 //////////////////////////////////
 
@@ -24,57 +24,57 @@ const fileStorageEngine = multer.diskStorage({
 //////////////////////////////////
 
 /* LOGIN AND HOME */
-router.get("/", adminController.getLoginHandler);
+router.get("/",  adminController.getLoginHandler);
 router.post("/", adminController.postLoginHandler);
-router.get("/dashboard", adminController.getDashboardHandler);
+router.get("/dashboard", verifyLogin, adminController.getDashboardHandler);
 
 //////////////////////////////////
 
 /* CATEGORY */
-router.get("/veiw-category", adminController.getVeiwCategoryHandler);
-router.get("/add-category", adminController.getAddCategoryHandler);
-router.post("/add-category", adminController.postAddCategoryHandler);
-router.get("/edit-category/:id", adminController.getEditCategoryHandler);
-router.post("/edit-category/:id", adminController.postEditCategoryHandler);
-router.get("/delete-category/:id", adminController.getDeleteCategoryHandler);
+router.get("/veiw-category", verifyLogin, adminController.getVeiwCategoryHandler);
+router.get("/add-category", verifyLogin, adminController.getAddCategoryHandler);
+router.post("/add-category",verifyLogin, adminController.postAddCategoryHandler);
+router.get("/edit-category/:id",verifyLogin, adminController.getEditCategoryHandler);
+router.post("/edit-category/:id",verifyLogin, adminController.postEditCategoryHandler);
+router.get("/delete-category/:id",verifyLogin, adminController.getDeleteCategoryHandler);
 
 //////////////////////////////////
 
 /* PRODUCT */
-router.get("/veiw-product", adminController.getViewProductHandler);
-router.get("/add-product", adminController.getAddProductHandler);
-router.post("/add-product",upload.array("image", 3), adminController.postAddProductHandler);
-router.get("/edit-product/:id", adminController.getEditProductHandler);
-router.post("/edit-product/:id", upload.array("image", 3), adminController.postEditProductHandler);
-router.get("/delete-product/:id", adminController.getDeleteProductHandler);
+router.get("/veiw-product",verifyLogin, adminController.getViewProductHandler);
+router.get("/add-product",verifyLogin, adminController.getAddProductHandler);
+router.post("/add-product", verifyLogin,upload.array("image", 3), adminController.postAddProductHandler);
+router.get("/edit-product/:id",verifyLogin, adminController.getEditProductHandler);
+router.post("/edit-product/:id",verifyLogin, upload.array("image", 3), adminController.postEditProductHandler);
+router.get("/delete-product/:id",verifyLogin, adminController.getDeleteProductHandler);
 
 //////////////////////////////////
 
 /* USER */
-router.get("/veiw-user", userController.getVeiwUserHandler);
-router.get("/block-user/:id", userController.getBlockUserHandler);
-router.get("/unblock-user/:id", userController.getUnblockHandler);
+router.get("/veiw-user", verifyLogin, userController.getVeiwUserHandler);
+router.get("/block-user/:id", verifyLogin, userController.getBlockUserHandler);
+router.get("/unblock-user/:id", verifyLogin, userController.getUnblockHandler);
 
 //////////////////////////////////
 
 /* ORDERS */
-router.get('/orders', adminController.orderData);
-router.get('/renderChangeOrderStatus/:id', adminController.renderChangeOrderStatus);
-router.post('/changeOrderStatus/:id', adminController.editOrderStatus);
+router.get('/orders', verifyLogin, adminController.orderData);
+router.get('/renderChangeOrderStatus/:id', verifyLogin, adminController.renderChangeOrderStatus);
+router.post('/changeOrderStatus/:id',verifyLogin, adminController.editOrderStatus);
 
 //////////////////////////////////
 
 /* COUPON */
-router.get('/addCoupon', adminController.renderaddCoupon);
-router.post('/addCoupon', adminController.addCoupon);
-router.get('/couponData', adminController.couponData);
-router.get('/editCoupon/:id', adminController.renderEditCoupon);
-router.post('/editCoupon/:id', adminController.editCoupon);
-router.get('/deleteCoupon/:id', adminController.deleteCoupon);
+router.get('/addCoupon',verifyLogin, adminController.renderaddCoupon);
+router.post('/addCoupon',verifyLogin, adminController.addCoupon);
+router.get('/couponData',verifyLogin, adminController.couponData);
+router.get('/editCoupon/:id',verifyLogin, adminController.renderEditCoupon);
+router.post('/editCoupon/:id',verifyLogin, adminController.editCoupon);
+router.get('/deleteCoupon/:id',verifyLogin, adminController.deleteCoupon);
 
 //////////////////////////////////
 
 /* DASHBOARD */
-router.post('/dashboardGraph', adminController.graphData);
+router.post('/dashboardGraph',verifyLogin, adminController.graphData);
 
 module.exports = router;
