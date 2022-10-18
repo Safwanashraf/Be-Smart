@@ -88,7 +88,7 @@
   
               if (userCart) {
                 productexist = await cartModel.findOne({ userId: userId, "products.productId": productId });
-                if (productexist) {
+                  if (productexist) {
                   await cartModel.updateOne({ userId: userId, "products.productId": productId }, { "products.$.quantity": quantities });
                 }
                 else {
