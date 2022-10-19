@@ -1,4 +1,3 @@
-
 //////////////////////////////////
 
 /* REQUIRE */
@@ -10,7 +9,6 @@ const wishlistController = require("../controllers/wishlist-conroller");
 const userController = require("../controllers/user-controller");
 const profileController = require("../controllers/profile-controller")
 const verifyLogin = userController.verifyLogin;
-
 
 //////////////////////////////////
 
@@ -33,17 +31,15 @@ router.get("/shop", userController.getShop);
 /* CART */
 router.post("/add-to-cart", verifyLogin, cartController.postAddToCart);
 router.get("/veiw-cart", verifyLogin, cartController.getVeiwCart);
-router.post("/change-product-quantity",cartController.postCartCount);
-router.post('/deleteCartProduct',verifyLogin,cartController.delete);
-
+router.post("/change-product-quantity", cartController.postCartCount);
+router.post('/deleteCartProduct', verifyLogin, cartController.delete);
 
 //////////////////////////////////
 
 /* WHISHLIST */
 router.post("/add-to-wishlist", verifyLogin, wishlistController.postAddToWishlist);
 router.get("/veiw-wishlist", verifyLogin, wishlistController.getVeiwWishlist);
-router.post('/deleteWishlistProduct',verifyLogin,wishlistController.delete);
-
+router.post('/deleteWishlistProduct', verifyLogin, wishlistController.delete);
 
 //////////////////////////////////
 
@@ -56,7 +52,7 @@ router.post('/address_fetching', verifyLogin, cartController.checkoutAddressChan
 router.get('/delete_address/:id', verifyLogin, profileController.deleteAddress);
 router.post('/edit_userdata', verifyLogin, profileController.editUserData);
 router.post('/order_confirmed', verifyLogin, cartController.renderConfirmation);
-router.get('/renderConfirmation', verifyLogin, cartController.confirmationPage) ;
+router.get('/renderConfirmation', verifyLogin, cartController.confirmationPage);
 router.post('/edit_userdata', verifyLogin, profileController.editUserData);
 router.post('/intiate_razorpay', verifyLogin, cartController.intiatePay);
 router.post('/verifyRazorpay', verifyLogin, cartController.verifyPay);
@@ -65,7 +61,5 @@ router.post('/verifyRazorpay', verifyLogin, cartController.verifyPay);
 
 /* COUPON */
 router.post('/couponValidation', verifyLogin, cartController.validateCoupon);
-
-
 
 module.exports = router;

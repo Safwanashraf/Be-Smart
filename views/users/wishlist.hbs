@@ -383,10 +383,7 @@
 												<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 btn btn-md btn-golden js-addcart-detail " onclick="addToCart('{{this.productId._id}}')">
 												Add to cart
 												</button> 
-												{{!-- <a href="#" class="btn btn-md btn-golden"
-                                                    data-bs-toggle="modal"  onclick="addToCart('{{products._id}}')">Add To
-                                                    Cart</a> --}}
-													</td>
+											</td>
                                         </tr> 
 										<!-- End Wishlist Single Item-->
 										{{/each}}
@@ -611,12 +608,11 @@ Swal.fire({
 						setTimeout(()=>{
               location.reload()
             },3000)
-									//						alert("deleted successfully")
 				}
 
-				}
+			}
 
-			})
+		})
 
   }
 })
@@ -656,7 +652,6 @@ Swal.fire({
 <script>
 
 		function addToCart(productId){
-			console.log("huhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh nirmal")
 			$.ajax({
 				url:'/add-to-cart',
 				data:{
