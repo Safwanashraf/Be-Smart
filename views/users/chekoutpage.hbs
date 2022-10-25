@@ -1187,6 +1187,7 @@
     })
   }
     function couponValidator(total) {
+      console.log('nirmal shaji on fire')
     totalAmount = document.getElementById('totalAmount').text
     couponId = document.getElementById('couponId').value
 
@@ -1202,7 +1203,7 @@
       method: 'post',
       success: (response) => {
         console.log(response);
-        if (response.message == "success") {
+        if (response.message == "succesfull") {
 
           document.getElementById("couponPresent").style.visibility = 'visible'
           document.getElementById("couponPresents").style.visibility = 'visible'

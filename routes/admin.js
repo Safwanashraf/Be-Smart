@@ -46,7 +46,7 @@ router.get("/add-product", verifyLogin, adminController.getAddProductHandler);
 router.post("/add-product", verifyLogin, upload.array("image", 3), adminController.postAddProductHandler);
 router.get("/edit-product/:id", verifyLogin, adminController.getEditProductHandler);
 router.post("/edit-product/:id", verifyLogin, upload.array("image", 3), adminController.postEditProductHandler);
-router.get("/delete-product/:id", verifyLogin, adminController.getDeleteProductHandler);
+router.get("/delete-product/:id",verifyLogin, adminController.getDeleteProductHandler);
 
 //////////////////////////////////
 
@@ -60,7 +60,7 @@ router.get("/unblock-user/:id", verifyLogin, userController.getUnblockHandler);
 /* ORDERS */
 router.get('/orders', verifyLogin, adminController.orderData);
 router.get('/renderChangeOrderStatus/:id', verifyLogin, adminController.renderChangeOrderStatus);
-router.post('/changeOrderStatus/:id', verifyLogin, adminController.editOrderStatus);
+router.post('/changeOrderStatus/:id', verifyLogin,   adminController.editOrderStatus);
 
 //////////////////////////////////
 

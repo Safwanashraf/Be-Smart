@@ -267,8 +267,18 @@ module.exports = {
         .lean();
 
       totalAmount = await cartFunctions.totalAmount(cartData);
+      if (req.session.coupon) {
+        amountPaid = totalAmount - req.session.coupon.discountAmount;
+        req.body.discount = req.session.coupon.discountAmount;
+        delete req.session.coupon;
+    }
+    else {
+        amountPaid = totalAmount;
+    }
       req.body.products = cartData.products;
       req.body.paymentType = "Online Payment";
+      req.body.totalAmount = totalAmount;
+      req.body.amountPaid = amountPaid;
       orderData = await orderModel.create(req.body);
 
       await cartModel.findOneAndDelete({ userId: req.body.userId });
@@ -277,7 +287,7 @@ module.exports = {
         .populate("products.productId")
         .lean();
 
-      totalAmounts = totalAmount * 100;
+      totalAmounts = amountPaid * 100;
       razorData = await razorpay.intiateRazorpay(orderData._id, totalAmounts);
       await orderModel.findOneAndUpdate(
         { _id: orderData._id },

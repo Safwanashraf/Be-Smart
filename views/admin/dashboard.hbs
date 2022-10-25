@@ -27,6 +27,14 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
+        <!-- Data Table -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+
+
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     
@@ -138,7 +146,7 @@
                 
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <img class="rounded-circle me-lg-2" src="/adminassets/img/user.jpg" alt=""
+                        <img class="rounded-circle me-lg-2" src="/img/user.jpg" alt=""
                             style="width: 40px; height: 40px;">
                         <span class="d-none d-lg-inline-flex">Safwan Ashraf</span>
                     </a>
@@ -151,20 +159,109 @@
             </div>
         </nav>
         <!-- Navbar End -->
-
-
-      
-      
-
-     
-            <div class=" d-flex justify-content-center m-5" >
-                <canvas id="myChart" style="width:100%;max-width:900px; height: 400px"></canvas>
+        {{!-- <div class="row mt-4 ms-3 me-3">
+        <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-chart-area fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total Revenue</p>
+                            <h6 class="mb-0">₹{{TotalRevenue}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <a href="#">Sales Report</a>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-chart-area fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total Revenue</p>
+                            <h6 class="mb-0">₹{{TotalRevenue}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <a href="#">Sales Report</a>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                </div> --}}
+                
+        <div class="row m-4">
+            <div class=" col-lg-6 col-md-6  me-5 mb-5 " style="background-color: #F3F6F7 ;" >
+                <canvas id="myChart1" style="width:100%;max-width:900px; height: 400px"></canvas>
             </div>
 
-            <div class=" d-flex justify-content-center m-5" >
-                <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+            <div class="  col-lg-6 col-md-6 ms-5 " style="width:450px; " style="background-color: #F3F6F7 ;">
+                <canvas id="myChart2" style="width:100%;max-width:600px;"></canvas>
             </div>
-    
+        </div>
+
+        
+    <div class="container" style="padding-top: 20px;">
+        <div class="" style="padding:20px;">
+			<button onclick="generatePDF1()">Generate PDF</button>
+		</div>
+          <table
+            class="table table-light table-striped"
+            id="product-table"
+            style="padding-top: 10px;"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Details</th>
+                <th scope="col">Id</th>
+                <th scope="col">Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Order Status</th>
+                {{!-- <th scope="col">Edit</th> --}}
+              </tr>
+            </thead>
+            <tbody>
+              {{#orderData}}
+                <tr>
+                  <td scope="col">{{inc1 @index}}</td>
+                  <td scope="col">{{userId.name}}</td>
+                  <td scope="col">{{userId.phone}}</td>
+
+                  <td scope="col">
+                    {{#products}}
+                      <ul>
+                        <li>&#10003; {{productId.name}}</li>
+
+                      </ul>
+                    {{/products}}
+                  </td>
+
+                  <td scope="col">{{_id}}</td>
+                  <td scope="col">{{paymentType}}</td>
+                  <td scope="col">{{paymentStatus}}</td>
+                  <td scope="col">{{orderStatus}}</td>
+                  {{!-- <td scope="col"><a
+                      href="/admin/renderChangeOrderStatus/{{_id}}"
+                    ><i class="bi bi-pencil-square"></i></a></td> --}}
+                  {{! <td scope="col">Status</td> }}
+                </tr>
+              {{/orderData}}
+            </tbody>
+          </table>
+        </div>
 
 
     </div>
@@ -175,6 +272,28 @@
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+		<script>
+			function generatePDF1() {
+			const element = document.getElementById('product-table');
+			var opt = {
+				  margin:       0.5,
+				  filename:     'dashboard.pdf',
+				  image:        { type: 'jpeg', quality: 0.98 },
+				  html2canvas:  { scale: 2 },
+				  jsPDF:        { unit: 'in', format: [10,15], orientation: 'landscape' }
+				};
+                
+				// Choose the element that our invoice is rendered in.
+				html2pdf().set(opt).from(element).save();
+                
+			}
+		</script>
+
+        <script>
+      $(document).ready(function () { $('#product-table').DataTable(); });
+    </script>
+    
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -205,7 +324,7 @@
         var yValues = res.monthlyTotal;
         var barColors = ["red", "green", "blue", "orange", "brown", "yellow", "green", "green", "green", "green", "green", "green"];
 
-        new Chart("myChart", {
+        new Chart("myChart1", {
             type: "bar",
             data: {
                 labels: xValues,
@@ -233,7 +352,7 @@
             "#1e7145"
         ];
 
-        new Chart("myChart1", {
+        new Chart("myChart2", {
             type: "doughnut",
             data: {
                 labels: xValues,

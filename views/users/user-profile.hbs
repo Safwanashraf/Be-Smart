@@ -345,8 +345,8 @@
             <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
               <nav aria-label="breadcrumb">
                 <ul>
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="shop-grid-sidebar-left.html">Shop</a></li>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/shop">Shop</a></li>
                   <li class="active" aria-current="page">My Account</li>
                 </ul>
               </nav>
@@ -397,7 +397,7 @@
                       <p class="mb-0">Full Name</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0">{{userData.first_name}} {{userData.last_name}}</p>
+                      <p class="text-muted mb-0">{{userData.name}}</p>
                     </div>
                   </div>
                   <hr style="background-color: black;">
@@ -415,7 +415,7 @@
                       <p class="mb-0">Mobile</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0">{{userData.phone_number}}</p>
+                      <p class="text-muted mb-0">{{userData.phone}}</p>
 
                     </div>
                   </div>
@@ -423,6 +423,44 @@
               </div>
             </div>
 
+
+            <div id="changer3" style="display: none;">
+              <button type="button" class="btn btn-light mb-3 "
+                style="color: #fff; background-color: #b19361; text-decoration: none; " data-bs-toggle="modal"
+                data-bs-target="#userDetails" data-bs-whatever="@getbootstrap">Edit</button>
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row ">
+                    <div class="col-sm-3 ">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.name}}</p>
+                    </div>
+                  </div>
+                  <hr style="background-color: black;">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.email}}</p>
+                    </div>
+                  </div>
+                  <hr style="background-color: black;">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Mobile</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.phone}}</p>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
  {{!-- //------------------------manage--orders--------------------------------------------------- --}}
             <div id="changer4" style="display: none;">
@@ -451,32 +489,32 @@
                        <td>
                         {{#products}}
                         <ul>
-                          <li><img src="/product_uploads/{{productId.imagepath.[0]}}" style="width:20px;height:15px;"></li>
+                          <li><img src="/image/{{productId.image.[0]}}" style="width:50px;height:50px;"></li>
 
                         </ul> {{/products}}</td>
                       </td>
                       <td scope="row">{{#products}}
-                        <ul>
+                        <ul class=" pt-3 pb-3">
                           <li>&#10003; {{productId.name}}</li>
-
                         </ul> {{/products}}
+                        
                       </td>
 
                       <td scope="row">{{#products}}
-                        <ul>
-                          <li>{{productId.amount}}</li>
+                        <ul class=" pt-3 pb-3">
+                          <li>{{productId.current_price}}</li>
 
                         </ul> {{/products}}</td>
                       <td scope="row">
                         {{#products}}
-                        <ul>
+                        <ul class=" pt-3 pb-3 ps-4">
                           <li>{{quantity}}</li>
 
                         </ul> {{/products}}
                       </td>
                       {{!-- <td scope="row">gfgf</td> --}}
-                      <td id="orderStatus" scope="row" >{{orderStatus}}</td>
-                      <td scope="row">
+                      <td id="orderStatus" style="vertical-align: middle;" scope="row" >{{orderStatus}}</td>
+                      <td scope="row" style="vertical-align: middle;">
                         <a href="#"> <button class="btn btn-outline-danger btn-sm"
                           onclick="cancelOrder('{{_id}}');">Cancel?</button></a>
                       </td>
@@ -538,7 +576,7 @@
             --}}
             {{!-- -------------------------------------manage
             orders----------------------------------------------------------- --}}
-            <div id="changer4" style="display: none;">
+            {{!-- <div id="changer4" style="display: none;">
               <button type="button" class="btn btn-light mb-3 "
                 style="color: #fff; background-color: #b19361; text-decoration: none; " data-bs-toggle="modal"
                 data-bs-target="#addressDetails" data-bs-whatever="@getbootstrap">Edit</button>
@@ -574,7 +612,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
             {{!--
             ---------------------------------------change-password---------------------------------------------------------------------
             --}}
@@ -622,21 +660,21 @@
                 <form action="/edit_userdata" method="post">
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">First Name:</label>
-                    <input name="first_name" value="{{userData.first_name}}" type="text" class="form-control"
+                    <input name="first_name" value="{{userData.name}}" type="text" class="form-control"
                       id="recipient-name">
                   </div>
-                  <div class="mb-3">
+                  {{!-- <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Last Name:</label>
                     <input name="last_name" value="{{userData.last_name}}" type="text" class="form-control"
                       id="recipient-name">
-                  </div>
+                  </div> --}}
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Email:</label>
                     <input name="email" value="{{userData.email}}" type="text" class="form-control" id="recipient-name">
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Mobile:</label>
-                    <input name="phone_number" value="{{userData.phone_number}}" type="text" class="form-control"
+                    <input name="phone_number" value="{{userData.phone}}" type="text" class="form-control"
                       id="recipient-name">
                   </div>
 
@@ -675,25 +713,25 @@
                     <div class="col-lg-6">
                       <div class="default-form-box">
                         <label>First Name <span>*</span></label>
-                        <input type="text" id="firstName" value="{{address.[0].firstName}}" name="firstName" />
+                        <input type="text" id="firstName" value="{{addressData.[0].firstName}}" name="firstName" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="default-form-box">
                         <label>Last Name <span>*</span></label>
-                        <input type="text" id="lastName" value="{{address.[0].lastName}}" name="lastName" />
+                        <input type="text" id="lastName" value="{{addressData.[0].lastName}}" name="lastName" />
                       </div>
                     </div>
                     <div class="col-12">
                       <div class="default-form-box">
                         <label>Phone number<span>*</span></label>
-                        <input type="text" id="phoneNumber" value="{{address.[0].phoneNumber}}" name="phoneNumber" />
+                        <input type="text" id="phoneNumber" value="{{addressData.[0].phoneNumber}}" name="phoneNumber" />
                       </div>
                     </div>
                     <div class="col-12">
                       <div class="default-form-box">
                         <label>Alterante phone number</label>
-                        <input type="text" id="alternatePhoneNumber" value="{{address.[0].alternatePhoneNumber}}"
+                        <input type="text" id="alternatePhoneNumber" value="{{addressData.[0].alternatePhoneNumber}}"
                           name="alternatePhoneNumber" />
                       </div>
                     </div>
@@ -701,7 +739,7 @@
                       <div class="default-form-box">
                         <label>Type <span>*</span></label>
                         <select class="country_option nice-select wide" name="type" id="type">
-                          <option value="{{address.[0].type}}" selected>{{address.[0].type}}</option>
+                          <option value="{{addressData.[0].type}}" selected>{{addressData.[0].type}}</option>
                           <option value="home">Home</option>
                           <option value="office">Office</option>
 
@@ -711,7 +749,7 @@
                     <div class="col-12">
                       <div class="default-form-box">
                         <label>Street address <span>*</span></label>
-                        <input id="address" name="address" value="{{address.[0].address}}"
+                        <input id="address" name="address" value="{{addressData.[0].address}}"
                           placeholder="House number and street name" type="text" />
                       </div>
                     </div>
@@ -723,25 +761,25 @@
                     <div class="col-12">
                       <div class="default-form-box">
                         <label>Town / City <span>*</span></label>
-                        <input id="city" type="text" value="{{address.[0].city}}" name="city" />
+                        <input id="city" type="text" value="{{addressData.[0].city}}" name="city" />
                       </div>
                     </div>
                     <div class="col-12">
                       <div class="default-form-box">
                         <label>State <span>*</span></label>
-                        <input id="state" value="{{address.[0].state}}" type="text" name="state" />
+                        <input id="state" value="{{addressData.[0].state}}" type="text" name="state" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="default-form-box">
                         <label>Land Mark<span>*</span></label>
-                        <input id="landMark" value="{{address.[0].landMark}}" type="text" name="landMark" />
+                        <input id="landMark" value="{{addressData.[0].landMark}}" type="text" name="landMark" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="default-form-box">
                         <label> Pincode <span>*</span></label>
-                        <input name="pincode" type="text" value="{{address.[0].pincode}}" />
+                        <input name="pincode" type="text" value="{{addressData.[0].pincode}}" />
                       </div>
                     </div>
 

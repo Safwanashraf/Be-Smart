@@ -41,6 +41,9 @@ module.exports = {
       console.log(error);
     }
   },
+  getAboutPage: (req, res, next) => {
+    res.render("users/about");
+  },
 
   getLogin: (req, res, next) => {
     try {

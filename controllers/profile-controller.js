@@ -14,7 +14,7 @@ module.exports = {
       userId = req.session.userId;
       req.body.userId = userId;
       await addressModel.create(req.body);
-      res.redirect("/");
+      res.redirect("/user-profile");
     } catch (error) {
       console.log(error);
     }

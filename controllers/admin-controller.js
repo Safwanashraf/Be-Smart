@@ -51,9 +51,16 @@ module.exports = {
 
   postLoginHandler: (req, res) => {
     try {
+      console.log(VAR.email,'var email by hari')
+      console.log(VAR.password,'var password by hari')
+      console.log(req.body.email,'req.body.email')
+      console.log(req.body.password,'req.body.password')
       if (VAR.email == req.body.email && VAR.password == req.body.password) {
+        console.log("in");
+        req.session.adminLoggedIn = true;
         res.redirect("/admin/dashboard");
       } else {
+        console.log("out");
         res.redirect("/admin");
       }
     } catch (error) {
@@ -61,9 +68,18 @@ module.exports = {
     }
   },
 
-  getDashboardHandler: (req, res) => {
+  getDashboardHandler:async (req, res) => {
     try {
-      res.render("admin/dashboard", { admin: true });
+      if(req.session.adminLoggedIn){
+        orderData = await orderModel
+          .find()
+          .populate("userId")
+          .populate("products.productId")
+          .lean();
+        res.render("admin/dashboard", { admin: true, orderData });
+      }else{
+        res.redirect("/")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -71,8 +87,12 @@ module.exports = {
 
   getVeiwCategoryHandler: async (req, res) => {
     try {
-      const categoryList = await catagories.find().lean();
-      res.render("admin/veiw-category", { categoryList, admin: true });
+      if(req.session.adminLoggedIn){
+        const categoryList = await catagories.find().lean();
+        res.render("admin/veiw-category", { categoryList, admin: true });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -80,7 +100,11 @@ module.exports = {
 
   getAddCategoryHandler: (req, res) => {
     try {
-      res.render("admin/add-category", { admin: true });
+      if(req.session.adminLoggedIn){
+        res.render("admin/add-category", { admin: true });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -102,8 +126,12 @@ module.exports = {
 
   getEditCategoryHandler: async (req, res) => {
     try {
-      let category = await categoryController.getCategoryDetails(req.params.id);
-      res.render("admin/edit-category", { category, admin: true });
+      if(req.session.adminLoggedIn){
+        let category = await categoryController.getCategoryDetails(req.params.id);
+        res.render("admin/edit-category", { category, admin: true });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -134,8 +162,12 @@ module.exports = {
 
   getViewProductHandler: async (req, res) => {
     try {
-      const productList = await productController.getAllProduct();
-      res.render("admin/veiw-product", { productList, admin: true });
+      if(req.session.adminLoggedIn){
+        const productList = await productController.getAllProduct();
+        res.render("admin/veiw-product", { productList, admin: true });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -143,9 +175,13 @@ module.exports = {
 
   getAddProductHandler: async (req, res) => {
     try {
-      await categoryController.getAllCategory().then((categoryList) => {
-        res.render("admin/add-product", { categoryList, admin: true });
-      });
+      if(req.session.adminLoggedIn){
+        await categoryController.getAllCategory().then((categoryList) => {
+          res.render("admin/add-product", { categoryList, admin: true });
+        });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -153,14 +189,18 @@ module.exports = {
 
   getEditProductHandler: async (req, res) => {
     try {
-      let product = await productController.getProductDetails(req.params.id);
-      categoryController.getAllCategory().then((categoryList) => {
-        res.render("admin/edit-product", {
-          product,
-          categoryList,
-          admin: true,
+      if(req.session.adminLoggedIn){
+        let product = await productController.getProductDetails(req.params.id);
+        categoryController.getAllCategory().then((categoryList) => {
+          res.render("admin/edit-product", {
+            product,
+            categoryList,
+            admin: true,
+          });
         });
-      });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -196,13 +236,16 @@ module.exports = {
 
   orderData: async (req, res, next) => {
     try {
-      orderData = await orderModel
-        .find()
-        .populate("userId")
-        .populate("products.productId")
-        .lean();
-
-      res.render("admin/tableorderData", { orderData });
+      if(req.session.adminLoggedIn){
+        orderData = await orderModel
+          .find()
+          .populate("userId")
+          .populate("products.productId")
+          .lean();
+        res.render("admin/tableorderData", { orderData });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -210,8 +253,12 @@ module.exports = {
 
   renderChangeOrderStatus: (req, res, next) => {
     try {
-      id = req.params.id;
-      res.render("admin/editOrderStatus", { id });
+      if(req.session.adminLoggedIn){
+        id = req.params.id;
+        res.render("admin/editOrderStatus", { id });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {}
   },
 
@@ -229,7 +276,11 @@ module.exports = {
 
   renderaddCoupon: (req, res, next) => {
     try {
-      res.render("admin/addCoupon");
+      if(req.session.adminLoggedIn){
+        res.render("admin/addCoupon");
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -256,8 +307,12 @@ module.exports = {
 
   couponData: async (req, res, next) => {
     try {
-      couponData = await couponModel.find().lean();
-      res.render("admin/couponTable", { couponData });
+      if(req.session.adminLoggedIn){
+        couponData = await couponModel.find().lean();
+        res.render("admin/couponTable", { couponData });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -265,10 +320,14 @@ module.exports = {
 
   renderEditCoupon: async (req, res, next) => {
     try {
-      id = req.params.id;
-      couponData = await couponModel.find({ _id: req.params.id }).lean();
-      couponData = couponData[0];
-      res.render("admin/editCoupon", { id, couponData });
+      if(req.session.adminLoggedIn){
+        id = req.params.id;
+        couponData = await couponModel.find({ _id: req.params.id }).lean();
+        couponData = couponData[0];
+        res.render("admin/editCoupon", { id, couponData });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -323,8 +382,12 @@ module.exports = {
 
   couponData: async (req, res, next) => {
     try {
-      couponData = await couponModel.find().lean();
-      res.render("admin/couponTable", { couponData });
+      if(req.session.adminLoggedIn){
+        couponData = await couponModel.find().lean();
+        res.render("admin/couponTable", { couponData });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -332,14 +395,18 @@ module.exports = {
 
   renderEditCoupon: async (req, res, next) => {
     try {
-      id = req.params.id;
-      couponData = await couponModel.find({ _id: req.params.id }).lean();
-      couponData = couponData[0];
-      res.render("admin/editCoupon", { id, couponData });
+      if(req.session.adminLoggedIn){
+        id = req.params.id;
+        couponData = await couponModel.find({ _id: req.params.id }).lean();
+        couponData = couponData[0];
+        res.render("admin/editCoupon", { id, couponData });
+      }else{
+        res.redirect("/admin")
+      }
     } catch (error) {
       console.log(error);
     }
-  },
+  },  
 
   editCoupon: async (req, res, next) => {
     try {
@@ -409,6 +476,8 @@ module.exports = {
           },
         ])
         .sort({ paymentType: 1 });
+        console.log(paymentType);
+        
 
       graphData = { paymentType, monthlySales, eachDaySale };
       let paymentTotal = [];
@@ -425,7 +494,8 @@ module.exports = {
         }
         monthlyTotal[i] = total;
       }
-
+  console.log(paymentTotal);
+  console.log(monthlyTotal);
       res.json({ message: "success", paymentTotal, monthlyTotal });
     } catch (error) {
       console.log(error);
